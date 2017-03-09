@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.xiongmeng.android.R;
 import com.xiongmeng.android.activity.GoodsInfoActivity;
 import com.xiongmeng.android.activity.WebViewActivity;
@@ -190,7 +191,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
             banner.setImages(images).setImageLoader(new ImageLoader() {
                 @Override
                 public void displayImage(Context context, Object path, ImageView imageView) {
-                    Glide.with(context).load(path).crossFade().into(imageView);
+                    Glide.with(context).load(path).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
                 }
             }).start();
             //设置样式

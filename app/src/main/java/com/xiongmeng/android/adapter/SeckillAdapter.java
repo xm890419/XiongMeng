@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.xiongmeng.android.R;
 import com.xiongmeng.android.bean.HomeBean;
 import com.xiongmeng.android.utils.Constants;
@@ -46,7 +47,7 @@ public class SeckillAdapter extends RecyclerView.Adapter <SeckillAdapter.ViewHol
         //2.绑定数据
         holder.tvCoverPrice.setText("￥"+listBean.getCover_price());
         holder.tvOriginPrice.setText("￥"+listBean.getOrigin_price());
-        Glide.with(mContext).load(Constants.BASE_URL_IMAGE+listBean.getFigure()).crossFade().into(holder.ivFigure);
+        Glide.with(mContext).load(Constants.BASE_URL_IMAGE+listBean.getFigure()).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.ivFigure);
     }
 
     @Override

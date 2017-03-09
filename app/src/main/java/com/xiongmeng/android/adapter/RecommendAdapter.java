@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.xiongmeng.android.R;
 import com.xiongmeng.android.bean.HomeBean;
 import com.xiongmeng.android.utils.Constants;
@@ -59,7 +60,7 @@ public class RecommendAdapter extends BaseAdapter {
         HomeBean.ResultBean.RecommendInfoBean recommendInfoBean = datas.get(position);
         viewHolder.tvName.setText(recommendInfoBean.getName());
         viewHolder.tvPrice.setText("￥"+recommendInfoBean.getCover_price());
-        Glide.with(mContext).load(Constants.BASE_URL_IMAGE+recommendInfoBean.getFigure()).into(viewHolder.ivRecommend);
+        Glide.with(mContext).load(Constants.BASE_URL_IMAGE+recommendInfoBean.getFigure()).diskCacheStrategy(DiskCacheStrategy.ALL).into(viewHolder.ivRecommend);
         return convertView;
     }
 

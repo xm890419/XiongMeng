@@ -19,4 +19,9 @@ public class Constants {
      * 图片的基本路径
      */
     public static String BASE_URL_IMAGE  = BASE_URL+"/img";
+    /**
+     * 网络视频路径
+     */
+    //public static final String NET_URL = "http://api.m.mtime.cn/PageSubArea/TrailerList.api";
+    public static final String NET_URL = "http://api.m.mtime.cn/PageSubArea/TrailerList.api";
 }

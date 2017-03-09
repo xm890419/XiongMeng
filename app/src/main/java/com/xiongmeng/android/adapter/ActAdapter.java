@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.xiongmeng.android.bean.HomeBean;
 import com.xiongmeng.android.utils.Constants;
 
@@ -42,7 +43,7 @@ public class ActAdapter extends PagerAdapter {
         ImageView imageView = new ImageView(mContext);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         HomeBean.ResultBean.ActInfoBean actInfoBean = datas.get(position);
-        Glide.with(mContext).load(Constants.BASE_URL_IMAGE+actInfoBean.getIcon_url()).crossFade().into(imageView);
+        Glide.with(mContext).load(Constants.BASE_URL_IMAGE+actInfoBean.getIcon_url()).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
         container.addView(imageView);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.xiongmeng.android.R;
 import com.xiongmeng.android.bean.HomeBean;
 import com.xiongmeng.android.utils.Constants;
@@ -59,7 +60,7 @@ public class HotAdapter extends BaseAdapter {
         HomeBean.ResultBean.HotInfoBean hotInfoBean = datas.get(position);
         viewHolder.tvName.setText(hotInfoBean.getName());
         viewHolder.tvPrice.setText("￥"+hotInfoBean.getCover_price());
-        Glide.with(mContext).load(Constants.BASE_URL_IMAGE+hotInfoBean.getFigure()).into(viewHolder.ivHot);
+        Glide.with(mContext).load(Constants.BASE_URL_IMAGE+hotInfoBean.getFigure()).diskCacheStrategy(DiskCacheStrategy.ALL).into(viewHolder.ivHot);
         return convertView;
     }
 

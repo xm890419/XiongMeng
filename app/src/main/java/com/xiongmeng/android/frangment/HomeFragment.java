@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
+import com.google.gson.Gson;
 import com.xiongmeng.android.R;
 import com.xiongmeng.android.adapter.HomeAdapter;
 import com.xiongmeng.android.bean.HomeBean;
@@ -49,6 +49,7 @@ public class HomeFragment extends BaseFrgment {
     public void initData() {
         super.initData();
         Log.e("TAG", "主页数据初始化了");
+
         getDataFromNet();
 
     }
@@ -69,7 +70,7 @@ public class HomeFragment extends BaseFrgment {
     }
 
     private void processData(String response) {
-        homeBean = JSON.parseObject(response, HomeBean.class);
+        homeBean = new Gson().fromJson(response, HomeBean.class);
         Log.e("TAG", "解析数据成功==" + homeBean.getResult().getHot_info().get(0).getName());
 
         //设置RecyclerView的适配器

@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.xiongmeng.android.R;
 import com.xiongmeng.android.bean.HomeBean;
 import com.xiongmeng.android.utils.Constants;
@@ -60,7 +61,7 @@ public class ChannelAdapter extends BaseAdapter {
         HomeBean.ResultBean.ChannelInfoBean channelInfoBean = datas.get(position);
         viewHolder.tvChannel.setText(channelInfoBean.getChannel_name());
         //Glide请求图片
-        Glide.with(mContext).load(Constants.BASE_URL_IMAGE+channelInfoBean.getImage()).crossFade().into(viewHolder.ivChannel);
+        Glide.with(mContext).load(Constants.BASE_URL_IMAGE+channelInfoBean.getImage()).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(viewHolder.ivChannel);
         return convertView;
     }
 
