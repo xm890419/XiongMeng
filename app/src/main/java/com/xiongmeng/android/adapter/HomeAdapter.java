@@ -1,6 +1,7 @@
 package com.xiongmeng.android.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +16,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.xiongmeng.android.R;
+import com.xiongmeng.android.activity.GoodsInfoActivity;
+import com.xiongmeng.android.activity.WebViewActivity;
+import com.xiongmeng.android.bean.GoodsBean;
 import com.xiongmeng.android.bean.HomeBean;
+import com.xiongmeng.android.bean.WebViewBean;
 import com.xiongmeng.android.utils.Constants;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
@@ -173,7 +178,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
             banner = (Banner) inflate.findViewById(R.id.banner);
         }
 
-        public void setData(List<HomeBean.ResultBean.BannerInfoBean> banner_info) {
+        public void setData(final List<HomeBean.ResultBean.BannerInfoBean> banner_info) {
             //tv_banner.setText("banner图片") ;
             //1.得到数据
             //2.设置Banner的数据
@@ -195,6 +200,44 @@ public class HomeAdapter extends RecyclerView.Adapter {
                 public void OnBannerClick(int position) {
                    Toast.makeText(mContext, "position==" + position, Toast.LENGTH_SHORT).show();
 
+                }
+            });
+            banner.setOnBannerListener(new OnBannerListener() {
+                @Override
+                public void OnBannerClick(int position) {
+                    //int realPosition = position -1;
+                    //Toast.makeText(mContext, "position==" + position, Toast.LENGTH_SHORT).show();
+                    int realPosition = position;
+                    if(realPosition < banner_info.size()) {
+                        String product_id = "";
+                        String name = "";
+                        String cover_price = "";
+                        String image = "";
+                        if(realPosition == 0) {
+                            product_id = "627";
+                            cover_price = "32.00";
+                            name = "剑三T恤批发";
+                        }else if(realPosition == 1) {
+                            product_id = "21";
+                            cover_price = "8.00";
+                            name = "同人原创】剑网3 剑侠情缘叁 Q版成男 口袋胸针";
+                        } else {
+                            product_id = "1341";
+                            cover_price = "50.00";
+                            name = "【蓝诺】《天下吾双》 剑网3同人本";
+                        }
+                        image = banner_info.get(position).getImage();
+
+                        GoodsBean goodsBean = new GoodsBean();
+                        goodsBean.setName(name);
+                        goodsBean.setFigure(image);
+                        goodsBean.setCover_price(cover_price);
+                        goodsBean.setProduct_id(product_id);
+
+                        Intent intent = new Intent(mContext,GoodsInfoActivity.class);
+                        intent.putExtra(GOODS_BEAN,goodsBean);
+                        mContext.startActivity(intent);
+                    }
                 }
             });
         }
@@ -252,6 +295,17 @@ public class HomeAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onItemClick(View view, int position) {
                     Toast.makeText(mContext, "position==" + position, Toast.LENGTH_SHORT).show();
+
+                    HomeBean.ResultBean.ActInfoBean actInfoBean = act_info.get(position);
+
+                    WebViewBean webViewBean = new WebViewBean();
+                    webViewBean.setName(actInfoBean.getName());
+                    webViewBean.setUrl(actInfoBean.getUrl());
+                    webViewBean.setIcon_url(actInfoBean.getIcon_url());
+
+                    Intent intent = new Intent(mContext,WebViewActivity.class);
+                    intent.putExtra(WEB_VIEW_BEAN,webViewBean);
+                    mContext.startActivity(intent);
                 }
             });
         }
@@ -281,6 +335,19 @@ public class HomeAdapter extends RecyclerView.Adapter {
                 public void onItemClick(View view, int position) {
                     Toast.makeText(mContext, "position==" + position, Toast.LENGTH_SHORT).show();
 
+                    HomeBean.ResultBean.SeckillInfoBean.ListBean listBean = seckill_info.getList().get(position);
+                    //商品新的的Bean对象
+                    GoodsBean goodsBean = new GoodsBean();
+                    goodsBean.setName(listBean.getName());
+                    goodsBean.setCover_price(listBean.getCover_price());
+                    goodsBean.setProduct_id(listBean.getProduct_id());
+                    goodsBean.setFigure(listBean.getFigure());
+                    goodsBean.setOrigin_price(listBean.getOrigin_price());
+
+                    Intent intent = new Intent(mContext,GoodsInfoActivity.class);
+                    intent.putExtra(GOODS_BEAN,goodsBean);
+                    intent.putExtra("1",1);
+                    mContext.startActivity(intent);
                 }
             });
             //设置秒杀的时间
@@ -309,6 +376,16 @@ public class HomeAdapter extends RecyclerView.Adapter {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                    Toast.makeText(mContext, "position==" + position, Toast.LENGTH_SHORT).show();
 
+                    HomeBean.ResultBean.RecommendInfoBean recommendInfoBean = recommend_info.get(position);
+                    GoodsBean goodsBean = new GoodsBean();
+                    goodsBean.setName(recommendInfoBean.getName());
+                    goodsBean.setCover_price(recommendInfoBean.getCover_price());
+                    goodsBean.setProduct_id(recommendInfoBean.getProduct_id());
+                    goodsBean.setFigure(recommendInfoBean.getFigure());
+
+                    Intent intent = new Intent(mContext,GoodsInfoActivity.class);
+                    intent.putExtra(GOODS_BEAN,goodsBean);
+                    mContext.startActivity(intent);
 
                 }
             });
@@ -334,6 +411,17 @@ public class HomeAdapter extends RecyclerView.Adapter {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Toast.makeText(mContext, "position==" + position, Toast.LENGTH_SHORT).show();
 
+                    HomeBean.ResultBean.HotInfoBean hotInfoBean = hot_info.get(position);
+                    //传递数据
+                    GoodsBean goodsBean = new GoodsBean();
+                    goodsBean.setName(hotInfoBean.getName());
+                    goodsBean.setCover_price(hotInfoBean.getCover_price());
+                    goodsBean.setFigure(hotInfoBean.getFigure());
+                    goodsBean.setProduct_id(hotInfoBean.getProduct_id());
+
+                    Intent intent = new Intent(mContext, GoodsInfoActivity.class);
+                    intent.putExtra(GOODS_BEAN,goodsBean);
+                    mContext.startActivity(intent);
                 }
             });
         }

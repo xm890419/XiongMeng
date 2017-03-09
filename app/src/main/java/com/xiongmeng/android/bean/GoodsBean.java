@@ -1,10 +1,12 @@
 package com.xiongmeng.android.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by 熊猛 on 2017/3/9.
  */
 
-public class GoodsBean {
+public class GoodsBean implements Serializable {
     /**
      * cover_price : 159.00
      * figure : /1477984921265.jpg
