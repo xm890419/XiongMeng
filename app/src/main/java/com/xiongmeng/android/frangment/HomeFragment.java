@@ -1,7 +1,9 @@
 package com.xiongmeng.android.frangment;
 
+import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -13,6 +15,7 @@ import com.xiongmeng.android.R;
 import com.xiongmeng.android.adapter.HomeAdapter;
 import com.xiongmeng.android.bean.HomeBean;
 import com.xiongmeng.android.utils.Constants;
+import com.xiongmeng.android.utils.SDCardUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -59,12 +62,18 @@ public class HomeFragment extends BaseFrgment {
             @Override
             public void onError(Call call, Exception e, int id) {
                 Log.e("TAG", "联网失败==" + e.getMessage());
+                String s = SDCardUtils.read(mContext, "s");
+
+                if(!TextUtils.isEmpty(s)) {
+                    processData(s);
+                }
             }
 
             @Override
             public void onResponse(String response, int id) {
                 //Log.e("TAG", "联网成功=="+response);
                 processData(response);
+                SDCardUtils.save(mContext,"s",response, Context.MODE_PRIVATE);
             }
         });
     }

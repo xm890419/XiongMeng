@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/MaterialRefresh_library/MaterialRefresh_library.iml" filepath="$PROJECT_DIR$/MaterialRefresh_library/MaterialRefresh_library.iml" />
       <module fileurl="file://$PROJECT_DIR$/XiongMeng.iml" filepath="$PROJECT_DIR$/XiongMeng.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xutils/xutils.iml" filepath="$PROJECT_DIR$/xutils/xutils.iml" />
     </modules>
   </component>
 </project>

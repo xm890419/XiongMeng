@@ -1,1 +1,1 @@
-include ':app', ':MaterialRefresh_library'
+include ':app', ':MaterialRefresh_library', ':xutils'
