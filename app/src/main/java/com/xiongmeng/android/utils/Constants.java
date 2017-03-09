@@ -1,4 +1,4 @@
-package utils;
+package com.xiongmeng.android.utils;
 
 /**
  * Created by 熊猛 on 2017/3/9.

@@ -1,5 +1,6 @@
 package com.xiongmeng.android.frangment;
 
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -9,15 +10,17 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.xiongmeng.android.R;
+import com.xiongmeng.android.adapter.HomeAdapter;
+import com.xiongmeng.android.bean.HomeBean;
+import com.xiongmeng.android.utils.Constants;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
-import bean.HomeBean;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.Call;
-import utils.Constants;
+
 
 /**
  * Created by 熊猛 on 2017/3/9.
@@ -68,6 +71,14 @@ public class HomeFragment extends BaseFrgment {
     private void processData(String response) {
         homeBean = JSON.parseObject(response, HomeBean.class);
         Log.e("TAG", "解析数据成功==" + homeBean.getResult().getHot_info().get(0).getName());
+
+        //设置RecyclerView的适配器
+        HomeAdapter homeAdapter = new HomeAdapter(mContext, homeBean.getResult());
+        rvHome.setAdapter(homeAdapter);
+
+        //设置布局管理器
+        rvHome.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
+
     }
 
     @OnClick({R.id.ll_main_scan, R.id.tv_search_home, R.id.tv_message_home})

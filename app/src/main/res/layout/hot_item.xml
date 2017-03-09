@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee"
+    android:padding="10dp">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/home_arrow_left_hot"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="这里都是买的棒棒哒"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_more_hot"
+            android:layout_weight="1"
+            android:text="查看更多"
+            android:gravity="end"
+            android:drawableRight="@drawable/home_arrow_right"
+            android:drawablePadding="5dp"/>
+    </LinearLayout>
+    <com.xiongmeng.android.view.MyGridView
+        android:id="@+id/gv_hot"
+        android:layout_marginTop="10dp"
+        android:horizontalSpacing="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:verticalSpacing="10dp"
+        android:numColumns="2"/>
+
+</LinearLayout>

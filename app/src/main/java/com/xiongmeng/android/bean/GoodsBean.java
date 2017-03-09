@@ -1,4 +1,4 @@
-package bean;
+package com.xiongmeng.android.bean;
 
 /**
  * Created by 熊猛 on 2017/3/9.

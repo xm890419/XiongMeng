@@ -1,4 +1,4 @@
-package bean;
+package com.xiongmeng.android.bean;
 
 import java.util.List;
 
